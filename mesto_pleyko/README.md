@@ -14,4 +14,8 @@ React;
 
 
 
+<<<<<<< HEAD
 ## ССылка на гит https://pleykoa.github.io/mesto/
+=======
+## ССылка на гит https://pleykoa.github.io/mesto-react/
+>>>>>>> 9ceab9f06e57e9b158eab49c9c29daf0ceedf935
