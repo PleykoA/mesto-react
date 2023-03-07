@@ -28,18 +28,18 @@ function Main(props) {
                     <div className="profile__avatar-container">
                         <div className="profile__overlay">
                             <img className="profile__avatar" src={userAvatar} alt="Аватар" />
-                            <button className="profile__avatar-edit-button" type="button" onClick={props.isEditAvatarPopupOpen}></button>
+                            <button className="profile__avatar-edit-button" type="button" onClick={props.editAvatar}></button>
                         </div>
                     </div>
                 </div>
                 <div className="profile__info">
                     <div className="profile__info-edit">
                         <h1 className="profile__title">{userInfo}</h1>
-                        <button className="profile__edit-button" type="button" onClick={props.isEditProfilePopupOpen}></button>
+                        <button className="profile__edit-button" type="button" onClick={props.editProfile}></button>
                     </div>
                     <p className="profile__subtitle">{caption}</p>
                 </div>
-                <button className="profile__add-button" type="button" onClick={props.isAddPlacePopupOpen}></button>
+                <button className="profile__add-button" type="button" onClick={props.addPlace}></button>
             </section>
             <div className="cards">
                 <ul className="cards__item">

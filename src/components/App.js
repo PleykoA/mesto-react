@@ -64,9 +64,9 @@ function App() {
 
             <Header />
             <Main
-                isEditProfilePopupOpen={handleEditProfileClick}
-                isAddPlacePopupOpen={handleAddPlaceClick}
-                isEditAvatarPopupOpen={handleEditAvatarClick}
+                editProfile={handleEditProfileClick}
+                addPlace={handleAddPlaceClick}
+                editAvatar={handleEditAvatarClick}
                 onCardClick={handleCardClick}
             />
             <Footer />
