@@ -57,7 +57,6 @@ export class Api {
         this._response(res));
   }
 
-
   removeLikeCard(id) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: 'DELETE',
@@ -79,7 +78,6 @@ export class Api {
       .then(res =>
         this._response(res));
   }
-
 
   editAvatar(data) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {

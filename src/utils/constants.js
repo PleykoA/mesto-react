@@ -1,4 +1,4 @@
-import { Api } from '.././components/Api';
+import { Api } from './Api';
 
 export const initialCards = [
   {
@@ -37,7 +37,6 @@ export const settings = {
   errorClass: 'form__input-error_active',
 };
 
-
 export const api = new Api(
   {
     baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-58',
@@ -47,8 +46,6 @@ export const api = new Api(
     }
   }
 );
-
-
 
 //кнопки добавления
 export const profileEditButton = document.querySelector('.profile__edit-button');
