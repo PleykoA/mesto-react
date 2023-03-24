@@ -37,15 +37,7 @@ export const settings = {
   errorClass: 'form__input-error_active',
 };
 
-export const api = new Api(
-  {
-    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-58',
-    headers: {
-      authorization: '4842089d-f2bb-472a-aa84-030e4841425a',
-      'Content-Type': 'application/json'
-    }
-  }
-);
+
 
 //кнопки добавления
 export const profileEditButton = document.querySelector('.profile__edit-button');

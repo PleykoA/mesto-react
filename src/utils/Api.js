@@ -93,3 +93,14 @@ export class Api {
 
 }
 
+const api = new Api(
+  {
+    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-58',
+    headers: {
+      authorization: '4842089d-f2bb-472a-aa84-030e4841425a',
+      'Content-Type': 'application/json'
+    }
+  }
+);
+
+export default api;
