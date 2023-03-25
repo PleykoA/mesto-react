@@ -5,37 +5,34 @@ import useFormValidation from '../hooks/useFormValidation';
 
 function EditProfilePopup(props) {
     const currentUser = useContext(CurrentUserContext);
-    const { values, errors, handleChange, setValues, resetValidation, isValid } =
-        useFormValidation({ name: currentUser.name, about: currentUser.about });
+    const { values, handleChange, setValues, resetValidation, isValid } = useFormValidation({ name: currentUser.name, about: currentUser.about });
 
     useEffect(() => {
         resetValidation();
         if (currentUser) {
             setValues(currentUser);
         }
-    }, [props.isOpen, currentUser, setValues]);
+    }, [props.isOpen, currentUser, setValues, resetValidation]);
 
     function handleSubmit(evt) {
         evt.preventDefault();
-
-        props.updateUser(values);
+        props.onUpdateUser(values);
     }
 
     return (
         <PopupWithForm
             isOpen={props.isOpen}
             onClose={props.onClose}
-            name={"profile-edit"}
-            title={"Редактировать профиль"}
+            name="profile-edit"
+            title="Редактировать профиль"
             buttonText="Сохранить"
             onSubmit={handleSubmit}
             isLoading={props.isLoading}
-            isValid={isValid}
+            isValid={!isValid}
         >
             <input
-                className={`form__input form__input_item_name ${errors.name && "-error"
-                    }`}
-                type={"text"}
+                className="form__input form__input_item_name"
+                type="text"
                 name="name"
                 placeholder="Имя"
                 minLength="2"
@@ -44,13 +41,9 @@ function EditProfilePopup(props) {
                 onChange={handleChange}
                 required
             />
-            <span
-                className="form__input-error name-input-error"></span>
-
+            <span className="form__input-error name-input-error"></span>
             <input
-                /* className="form__input form__input_item_job" */
-                className={`form__input ${errors.about ? `-error` : ``
-                    }`}
+                className="form__input form__input_item_job"
                 type="text"
                 name="about"
                 placeholder="О себе"
@@ -60,8 +53,7 @@ function EditProfilePopup(props) {
                 onChange={handleChange}
                 required
             />
-            <span /* className="form__input-error job-input-error" */ className={`form__input-error job-input-error ${errors.about ? `form__input-error_active` : ``
-                }`}></span>
+            <span className="form__input-error job-input-error"></span>
 
         </PopupWithForm>
     );

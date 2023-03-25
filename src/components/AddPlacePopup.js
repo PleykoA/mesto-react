@@ -2,43 +2,38 @@ import React, { useEffect } from 'react';
 import PopupWithForm from './PopupWithForm';
 import useFormValidation from '../hooks/useFormValidation';
 
-function AddPlacePopup({ addPlace, isOpen, onClose, isLoading, isValid, errors }) {
-    const { values, handleChange, setValues, resetValidation } = useFormValidation({});
+function AddPlacePopup({ addPlace, isOpen, onClose, isLoading }) {
+    const { values, handleChange, setValues, resetValidation, isValid } = useFormValidation({});
 
     useEffect(() => {
         resetValidation();
         const values = {};
         setValues(values);
-    }, [setValues, isOpen, resetValidation]);
+    }, [setValues, resetValidation, isOpen]);
 
     function handleSubmit(e) {
         e.preventDefault();
+        addPlace({
+            name: values.place,
+            link: values.link,
+        });
 
-        if (isValid) {
-            addPlace({
-                name: values.place,
-                link: values.link,
-            });
-        }
     }
-
 
     return (
         <PopupWithForm
             isOpen={isOpen}
             onClose={onClose}
             onSubmit={handleSubmit}
-            name={"add"}
-            title={"Новое место"}
+            name="add"
+            title="Новое место"
             buttonText="Сохранить"
             isLoading={isLoading}
-            isValid={isValid}
-
+            isValid={!isValid}
         >
-
             <input
                 className="form__input form__input_item_place"
-                type={"text"}
+                type="text"
                 name="place"
                 placeholder="Название"
                 minLength="2"
@@ -46,10 +41,8 @@ function AddPlacePopup({ addPlace, isOpen, onClose, isLoading, isValid, errors }
                 onChange={handleChange}
                 value={values.place || ""}
                 required
-
             />
-            <span className={`form__input-error place-input-error ${isValid ? '' : 'form__input-error_active'}`}></span>
-
+            <span className="form__input-error place-input-error"></span>
             <input
                 className="form__input form__input_item_link"
                 type="url"
@@ -59,7 +52,7 @@ function AddPlacePopup({ addPlace, isOpen, onClose, isLoading, isValid, errors }
                 value={values.link || ""}
                 required
             />
-            <span className={`form__input-error link-input-error ${isValid ? '' : 'form__input-error_active'}`}></span>
+            <span className="form__input-error link-input-error"></span>
 
         </PopupWithForm>
     );

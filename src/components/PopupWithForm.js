@@ -1,24 +1,41 @@
-function PopupWithForm({ name, isOpen, title, onSubmit, children, isValid, buttonText, onClose, isLoading }) {
+import { useRef } from 'react';
+
+function PopupWithForm({
+  name,
+  isOpen,
+  title,
+  onSubmit,
+  children,
+  isValid,
+  buttonText,
+  onClose,
+  isLoading }) {
+  const currentForm = useRef(null);
+
   return (
     <div className={`popup popup_${name} ${isOpen ? 'popup popup_opened' : 'popup'}`}>
       <div className="popup__container">
         <h2 className="popup__header">{title}</h2>
-        <form className={`form form-${name}`}
+        <form
+          className="form"
           name={name}
+          ref={currentForm}
           onSubmit={onSubmit}
           noValidate
         >
           {children}
           <button
-            className={`form__save-button ${!isValid ? `form__save-button_disabled` : ``}`}
+            className={`form__save-button ${isValid ? `form__save-button_disabled` : ``}`}
             type="submit"
             id="submit"
-            disabled={!isValid}
           >
-            {isLoading ? "Сохранение..." : buttonText}
-          </button>
+            {isLoading ? "Сохранение..." : buttonText}</button>
         </form>
-        <button className="popup__close-button" onClick={onClose} type="button"></button>
+        <button
+          className="popup__close-button"
+          onClick={onClose}
+          type="button">
+        </button>
       </div>
     </div>
   )
