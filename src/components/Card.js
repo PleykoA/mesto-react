@@ -5,8 +5,8 @@ function Card({ card, onCardClick, onCardLike, onCardDelete }) {
   const currentUser = useContext(CurrentUserContext);
   const isOwn = card.owner._id === currentUser._id;
   const cardDeleteButtonClassName = isOwn
-    ? "card__delete"
-    : "card__delete_disable";
+    ? 'card__delete'
+    : 'card__delete_disable';
 
   function isLiked() {
     return card.likes.some((like) => {
@@ -15,10 +15,10 @@ function Card({ card, onCardClick, onCardLike, onCardDelete }) {
   }
 
   return (
-    <div id="card-template">
-      <li className="card">
+    <div id='card-template'>
+      <li className='card'>
         <img
-          className="card__image"
+          className='card__image'
           alt={card.name}
           src={card.link}
           onClick={() => onCardClick(card)}
@@ -26,22 +26,22 @@ function Card({ card, onCardClick, onCardLike, onCardDelete }) {
 
         <button
           className={cardDeleteButtonClassName}
-          type="button"
+          type='button'
           onClick={() => onCardDelete(card)}>
         </button>
 
-        <div className="card__container">
-          <h2 className="card__title">{card.name}</h2>
-          <div className="card__like_container">
+        <div className='card__container'>
+          <h2 className='card__title'>{card.name}</h2>
+          <div className='card__like_container'>
 
             <button
-              className={`card__like ${isLiked() && "card__like_active"}`}
-              type="button"
-              id="like"
+              className={`card__like ${isLiked() && 'card__like_active'}`}
+              type='button'
+              id='like'
               onClick={() => onCardLike(card)}>
             </button>
 
-            <span className="card__like-count">{card.likes.length}</span>
+            <span className='card__like-count'>{card.likes.length}</span>
           </div>
         </div>
       </li>

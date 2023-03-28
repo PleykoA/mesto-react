@@ -82,7 +82,7 @@ function App() {
 
     function handleCardDelete(card) {
         setCardToDelete(card);
-        setIsDeletePopupOpen(!isDeletePopupOpen);
+        setIsDeletePopupOpen(true);
     };
 
     function handleUpdateAvatar(data) {
@@ -101,12 +101,12 @@ function App() {
             });
     }
 
-    function handleUpdateUser(data) {
+    function handleUpdateUser(user) {
         setIsLoading(true);
         api
-            .editProfile(data)
-            .then((userData) => {
-                setCurrentUser(userData);
+            .editProfile(user)
+            .then((userInfo) => {
+                setCurrentUser(userInfo);
                 closeAllPopups();
             })
             .catch((err) => {
@@ -121,8 +121,8 @@ function App() {
         setIsLoading(true);
         api
             .addCard(card)
-            .then((newCard) => {
-                setCards([newCard, ...cards]);
+            .then((card) => {
+                setCards([card, ...cards]);
                 closeAllPopups();
             })
             .catch((err) => {
@@ -133,7 +133,8 @@ function App() {
     };
 
     function handleCardLike(card) {
-        const isLiked = card.likes.some((i) => i._id === currentUser._id);
+        const isLiked = card.likes.some((i) =>
+            i._id === currentUser._id);
         if (!isLiked) {
             api
                 .likeCard(card._id)
@@ -167,11 +168,12 @@ function App() {
             .deleteCard(card._id)
             .then(() => {
                 setCards(() =>
-                    cards.filter((selectedCard) =>
-                        selectedCard._id !== card._id)
+                    cards.filter((c) =>
+                        c._id !== card._id)
                 );
             })
-            .then(() => closeAllPopups())
+            .then(() =>
+                closeAllPopups())
             .catch((err) => {
                 console.log(err);
             })
@@ -181,7 +183,7 @@ function App() {
     }
 
     return (
-        <div className="page">
+        <div className='page'>
             <CurrentUserContext.Provider value={currentUser}>
                 <Header />
                 <Main

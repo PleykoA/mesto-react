@@ -1,43 +1,43 @@
 import PopupWithForm from './PopupWithForm';
-import useFormValidation from '../hooks/useFormValidation';
+import useFormValidation from '../utils/useFormValidation';
 import React, { useEffect, useRef } from 'react';
 
-function EditAvatarPopup(props) {
-    const { values, handleChange, resetValidation, isValid } = useFormValidation({});
+function EditAvatarPopup({ isOpen, editAvatar, isLoading, onClose }) {
+    const { values, handleChange, resetValidation, isValid, errors } = useFormValidation({});
     const avatar = useRef(null);
 
     useEffect(() => {
         resetValidation();
-    }, [props.isOpen, resetValidation]);
+    }, [isOpen, resetValidation]);
 
     function handleSubmit(e) {
         e.preventDefault();
-        props.editAvatar({ avatar: avatar.current.value });
+        editAvatar({ avatar: avatar.current.value });
     }
 
     return (
         <PopupWithForm
-            isOpen={props.isOpen}
-            onClose={props.onClose}
+            isOpen={isOpen}
+            onClose={onClose}
             onSubmit={handleSubmit}
-            name="avatar-edit"
-            title="Обновить аватар"
-            buttonText="Сохранить"
-            isLoading={props.isLoading}
+            name='avatar-edit'
+            title='Обновить аватар'
+            buttonText='Сохранить'
+            isLoading={isLoading}
             isValid={!isValid}
         >
-            <input className="form__input form__input_link_avatar"
-                type="url"
-                name="avatar"
+            <input className={`form__input form__input_link_avatar ${isValid ? '' : 'form__input_type_error'}`}
+                type='url'
+                name='avatar'
                 ref={avatar}
-                value={values.avatar || ""}
+                value={values.avatar || ''}
                 onChange={handleChange}
-                placeholder="Ссылка на картинку"
-                minLength="2"
-                maxLength="200"
+                placeholder='Ссылка на картинку'
+                minLength='2'
+                maxLength='200'
                 required
             />
-            <span className="form__input-error"></span>
+            <span className={`form__input-error ${errors.avatar && 'form__input-error_active'}`}>{errors.avatar || ''}</span>
 
         </PopupWithForm >
     );

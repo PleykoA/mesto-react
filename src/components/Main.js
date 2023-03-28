@@ -6,42 +6,42 @@ function Main({ editProfile, addPlace, editAvatar, onCardClick, cards, onCardLik
     const currentUser = useContext(CurrentUserContext);
 
     return (
-        <main className="main">
-            <section className="profile">
-                <div className="profile__edit-info">
-                    <div className="profile__avatar-container">
-                        <div className="profile__overlay">
-                            <img className="profile__avatar"
+        <main className='main'>
+            <section className='profile'>
+                <div className='profile__edit-info'>
+                    <div className='profile__avatar-container'>
+                        <div className='profile__overlay'>
+                            <img className='profile__avatar'
                                 src={currentUser.avatar}
-                                alt="Аватар"
+                                alt='Аватар'
                             />
                             <button
-                                className="profile__avatar-edit-button"
-                                type="button"
+                                className='profile__avatar-edit-button'
+                                type='button'
                                 onClick={editAvatar}>
                             </button>
                         </div>
                     </div>
                 </div>
-                <div className="profile__info">
-                    <div className="profile__info-edit">
-                        <h1 className="profile__title">{currentUser.name}</h1>
+                <div className='profile__info'>
+                    <div className='profile__info-edit'>
+                        <h1 className='profile__title'>{currentUser.name}</h1>
                         <button
-                            className="profile__edit-button"
-                            type="button"
+                            className='profile__edit-button'
+                            type='button'
                             onClick={editProfile}>
                         </button>
                     </div>
-                    <p className="profile__subtitle">{currentUser.about}</p>
+                    <p className='profile__subtitle'>{currentUser.about}</p>
                 </div>
                 <button
-                    className="profile__add-button"
-                    type="button"
+                    className='profile__add-button'
+                    type='button'
                     onClick={addPlace}>
                 </button>
             </section>
-            <div className="cards">
-                <ul className="cards__item">
+            <div className='cards'>
+                <ul className='cards__item'>
                     {cards.map((card) => (
                         <Card key={card._id}
                             card={card}

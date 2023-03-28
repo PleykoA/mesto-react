@@ -3,8 +3,8 @@ import PopupWithForm from './PopupWithForm';
 
 function PopupWithConfirmation({ isOpen, onClose, isLoading, card, isValid, onCardDelete }) {
 
-  function handleSubmit(evt) {
-    evt.preventDefault();
+  function handleSubmit(e) {
+    e.preventDefault();
 
     onCardDelete(card);
   }
@@ -12,12 +12,13 @@ function PopupWithConfirmation({ isOpen, onClose, isLoading, card, isValid, onCa
   return (
     <PopupWithForm
       isOpen={isOpen}
-      onClose={onClose}
-      buttonText={isLoading ? "Удаление..." : "Да"}
-      name="form-delete"
-      title="Вы уверены?"
+      name='delete'
+      title='Вы уверены?'
+      buttonText={isLoading ? 'Удаление...' : 'Да'}
       onSubmit={handleSubmit}
       isValid={!isValid}
+      onClose={onClose}
+      isLoading={isLoading}
     />
   );
 }
